@@ -14,44 +14,38 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-// TODO:
-// Write Function: When all prompts answered, combine previous 3 functions to display a single password in the #password section.
-
 // Arrays for password options
 
-var ltrsLow = 'abcdefghijklmnopqrstuvwxyz'.split('')
-var ltrsUp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' .split('')
-var nums = '1234567890' .split('')
-var spChar = '!@#$%^&*()' .split('')
+var lCase = 'abcdefghijklmnopqrstuvwxyz';
+var uCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var number = '1234567890';
+var symbol = '!@#$%^&*()';
 
 // Prompts for Password Selection
 var useLtrsUp = window.confirm ("Include Upper Case Letters?")
 var useNums = window.confirm ("Include Numbers?")
 var useSpChar = window.confirm ("Include Special Characters?")
-var PwLength = window.prompt ("Desired Length of Password? Between 8 and 128 characters")
+var PwLength = Number(window.prompt ("Desired Length of Password? Between 8 and 128 characters"))
 
-console.log(useLtrsUp)
-console.log(useNums)
-console.log(useSpChar)
-console.log (PwLength)
-// Combine Arrays Function
-
-function generatePassword() {
-  var combinedArrays = [ltrsLow];
+// Combined Array based on user input
+var combinedArrays = lCase;
     if(useLtrsUp === true){
-      combinedArrays = combinedArrays.concat(ltrsUp);
+      combinedArrays = combinedArrays.concat(uCase);
     }
     if(useNums === true){
-      combinedArrays = combinedArrays.concat(nums);
+      combinedArrays = combinedArrays.concat(number);
     }
     if(useSpChar === true){
-      combinedArrays = combinedArrays.concat(spChar);
+      combinedArrays = combinedArrays.concat(symbol);
     }
-  for(i=0;i<=combinedArrays;i++){
-    password.push(combinedArrays[Math.floor(Math.random()*PwLength.length)]);
-  }
-  // return password;
-}
 
-// Run the generator for the first time
-// generatePassword();
+
+// Generate Password Function using random strings from the Combined Array
+
+function generatePassword() {
+  let pass = '';
+  for(let i=0;i<PwLength;i++){
+    pass += combinedArrays.charAt(Math.floor(Math.random() * combinedArrays.length))
+  }
+  return pass;
+}
