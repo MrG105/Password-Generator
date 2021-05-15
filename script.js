@@ -15,8 +15,6 @@ generateBtn.addEventListener("click", writePassword);
 
 
 // TODO:
-// Write Arrays: Letters (lowercase), Letters (uppercase,) Numbers, Special Characters.
-// Write Prompts: Y/N for Letters, Numbers, and Special Characters; Length of password (8-128 char);
 // Write Function: When all prompts answered, combine previous 3 functions to display a single password in the #password section.
 
 // Arrays for password options
@@ -38,5 +36,22 @@ console.log(useSpChar)
 console.log (PwLength)
 // Combine Arrays Function
 
+function generatePassword() {
+  var combinedArrays = [ltrsLow];
+    if(useLtrsUp === true){
+      combinedArrays = combinedArrays.concat(ltrsUp);
+    }
+    if(useNums === true){
+      combinedArrays = combinedArrays.concat(nums);
+    }
+    if(useSpChar === true){
+      combinedArrays = combinedArrays.concat(spChar);
+    }
+  for(i=0;i<=combinedArrays;i++){
+    password.push(combinedArrays[Math.floor(Math.random()*PwLength.length)]);
+  }
+  // return password;
+}
+
 // Run the generator for the first time
-generatePassword();
+// generatePassword();
